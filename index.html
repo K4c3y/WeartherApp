@@ -13,19 +13,26 @@
             <h1>Weather Dashboard</h1>
 
                 <!-- This form will be where users input data about the movies -->
-                <form id="city-form">
-                  <label for="city-input">Search for a movie</label>
-                  <input type="text" id="city-input" /><br />
-          
-                  <!-- This button will trigger our AJAX call -->
-                  <input id="find-city" type="submit" value="City Search" />
-                </form>
+                <div class="input">
+                    <input type="text" class="inputValue" placeholder="Enter a City">
+                    <input type="submit" value="Submit" class="button">
+                </div>
           
                 <!-- We'll be dumping our JSON contents in here -->
                 <div id="city-view"></div>
           
         </nav>
-    
+        <div class="display">
+            <h2 class="name"></h2>
+            <p class="desc"></p>
+            <p class="temp"></p>
+            <p class="date"></p>
+            <p class="wind"></p>
+            <p class="humid"></p>
+            <p class="uv"></p>
+            <p class="lat"></p>
+            <p class="long"></p>
+        </div>
         <aside>
             <div><a href="https://www.w3schools.com">TEST</a></div>
             <div><a href="https://www.w3schools.com">TEST</a></div>
@@ -37,20 +44,35 @@
             <div><a href="https://www.w3schools.com">TEST</a></div>
             <div><a href="https://www.w3schools.com">TEST</a></div>
             <div><a href="https://www.w3schools.com">TEST</a></div>
-            </ul>
+            
         </aside>
         
-        <div id="country-display">
-            <p>This is where selected country information will go!</p>
+        <div id="city-display">
+            <div class="display">
+                <h2 class="name"></h2>
+                <p class="desc"></p>
+                <p class="temp"></p>
+                <p class="date"></p>
+                <p class="wind"></p>
+                <p class="humid"></p>
+                <p class="uv"></p>
+              
+            </div>
         </div>
 
         <div id="week-forcast">
-            <p>this is where weekly weather information will go!</p>
+            <div class="week-desc"></div>
+            <div class="week-temp"></div>
+            <div class="week-date"></div>
+            <div class="week-wind"></div>
+            <div class="week-humid"></div>
+            <div class="week-uv"></div>
         </div>
 
     
     </div>
     <script src="assets/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
 </body>
-</html>
+</html> 
