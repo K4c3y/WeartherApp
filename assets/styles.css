@@ -44,3 +44,45 @@ h1 {
 .display {
     text-align: center;
 }
+
+.fas .fa-sun {
+   size: 7px    ;
+}
+
+#week-day1 {
+
+        float: left;
+        margin: 0 1.5%;
+        width: 15%;
+}
+      
+
+  #week-day2 {
+    float: left;
+    margin: 0 1.5%;
+    width: 15%;
+  }
+
+  #week-day3 {
+    float: left;
+    margin: 0 1.5%;
+    width: 15%;
+  }
+
+  #week-day4 {
+    float: left;
+    margin: 0 1.5%;
+    width: 15%;
+  }
+
+  #week-day5 {
+    float: left;
+    margin: 0 1.5%;
+    width: 15%;
+  }
+
+ .button-border {
+     border-radius: 2px;
+     border: black;
+     margin: 2px;
+ }
