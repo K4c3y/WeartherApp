@@ -40,6 +40,7 @@ if (storedCities !== null) {
   newCity.innerHTML = cities[i]
   newButton.appendChild(newCity)
   newCity.classList.add("btn", "btn-light", "button-border")
+  console.log("hi")
 
   } 
 }
@@ -51,7 +52,6 @@ if (storedCities !== null) {
   .then (response => response.json())
   .then(data => {
 
-    storeCity()
     
 
     // getting weather data from the API 
@@ -165,24 +165,17 @@ function displayWeeklyForcast() {
 // function store new cities in local storage and create matching button. 
 function storeCity() {  
   cities.push(inputValue.value)
+  cities.pop(inputValue.value)
+  console.log(inputValue.value)
   console.log(cities)
-  localStorage.setItem("CityList", JSON.stringify(cities));
+  
     let newCity = document.createElement('button')
     let newButton = document.getElementById('new-button')
     newCity.innerHTML = cities[cities.length-1]
     newButton.appendChild(newCity)
     newCity.classList.add("btn", "btn-light", "button-border")
-  
+
 }
 
 
-
-// let cityButtonsArray = JSON.parse(localStorage.getItem("cities")) || []
-// for (let i = 0; i < cityButtonsArray.length; i++) {
-//     let newCity = document.createElement("button")
-//     let buttonsDiv = document.getElementById("buttons")
-//     newCity.innerHTML = cityButtonsArray[i]
-//     newCity.classList.add("btn", "border", "btn-block", "mt-0", "text-left", "city")
-//     newCity.setAttribute("value", cityButtonsArray[i])
-//     buttonsDiv.appendChild(newCity)
 
