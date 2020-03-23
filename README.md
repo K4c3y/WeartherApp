@@ -31,3 +31,8 @@ Tried to Load buttons when clicked again, but wasn't able to get this to work. W
 Also added Screenshot Below
 
 ![](https://screenshot.click/22-38-kr95q-i7nv9.jpg)
+
+
+OPTED not to PUSH with unworking button code, screenshot is of all that code so you know I tried, and I have that code loccally so we can go over it in class. 
+
+Last READ ME update - realized how important more forethought on these kind of projects are going to be, lots of repeating code, should have created the city name as a variable so I wouldnt have to call the same code so often. Same thing with display some of the weather data, this could have been really cleaned up. 
