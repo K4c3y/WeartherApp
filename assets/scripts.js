@@ -31,18 +31,69 @@ let storedCities = JSON.parse(localStorage.getItem("CityList"));
 
 // if not the first time access the site, load buttons based off of city search history 
 
-if (storedCities !== null) {  
+if (storedCities !== null) {
 
   cities = storedCities
   for (let i = 0; i < cities.length; i++) {
-  let newCity = document.createElement('button')
-  let newButton = document.getElementById('new-button')
-  newCity.innerHTML = cities[i]
-  newButton.appendChild(newCity)
-  newCity.classList.add("btn", "btn-light", "button-border")
-  console.log("hi")
+    let newCity = document.createElement('button')
+    let newButton = document.getElementById('new-button')
+    newCity.innerHTML = cities[i]
+    newButton.appendChild(newCity)
+    newCity.classList.add("btn", "btn-primary", "button-border")
+    console.log("hi")
+    recentCity = cities[cities.length - 1]
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + recentCity + '&appid=eee136595c9847438584b0855ae13a6c&units=metric')
+      .then(response => response.json())
+      .then(data => {
 
-  } 
+
+
+        // getting weather data from the API for recent City  
+
+        let nameValue = data['name'];
+        let descValue = data['weather'][0]['description'];
+        let tempValue = data['main']['temp'];
+        let windValue = data['wind']['speed'];
+        let humidValue = data['main']['humidity'];
+        let latValue = data['coord']['lat']
+        let longValue = data['coord']['lon']
+        let weatherIcon = data.weather[0].icon
+        console.log(weatherIcon)
+        // discplaying weather values on the website FOR RECENT CITY 
+        name.innerHTML = 'City Name: ' + nameValue + "<img src=" + imageURL + weatherIcon + '.png' + ">"
+
+        temp.innerHTML = 'Temperature: ' + tempValue + '&deg;C'
+        desc.innerHTML = 'Description: ' + descValue
+        wind.innerHTML = 'Wind Speed: ' + windValue + 'm/s'
+        humid.innerHTML = 'Humidity: ' + humidValue + '%'
+
+        // display UV for recent search city 
+        displayUV(latValue, longValue);
+
+        // displays weekly forcast for recent search city
+        fetch('https://api.openweathermap.org/data/2.5/forecast?q='+recentCity+'&appid=eee136595c9847438584b0855ae13a6c&units=metric')
+        .then(response => response.json())
+        .then(data => {
+          let tempWeekValue;
+          let humidWeekValue;
+          let dateWeekValue
+          let weatherWeekIcon;
+          console.log(dateWeek);
+      
+          // created an array of classes to loop through the api properties to get the updated day values vs just  the 3 hour update. 
+          for (let i = 0; i < 40; i+=8) {
+            tempWeekValue = data['list'][i]['main']['temp'];
+            humidWeekValue = data['list'][i]['main']['humidity'];
+            dateWeekValue = data['list'][i]['dt_txt'];
+            weatherWeekIcon = data['list'][i]['weather'][0]['icon'];
+            console.log(weatherWeekIcon)
+            tempWeek[i/8].innerHTML = 'Temperature: ' + tempWeekValue + '&deg;C' + "<img src=" + imageURL + weatherWeekIcon + '.png' + ">"
+            humidWeek[i/8].innerHTML = 'Humidity ' + humidWeekValue + '%';
+            dateWeek[i/8].innerHTML = 'Date ' +  moment(dateWeekValue).format("YYYY-MM-DD");
+          }
+        })
+  })
+} 
 }
 
     //making the fetch call to show api value information 
@@ -165,15 +216,12 @@ function displayWeeklyForcast() {
 // function store new cities in local storage and create matching button. 
 function storeCity() {  
   cities.push(inputValue.value)
-  cities.pop(inputValue.value)
-  console.log(inputValue.value)
-  console.log(cities)
-  
+  localStorage.setItem("CityList", JSON.stringify(cities));
     let newCity = document.createElement('button')
     let newButton = document.getElementById('new-button')
     newCity.innerHTML = cities[cities.length-1]
     newButton.appendChild(newCity)
-    newCity.classList.add("btn", "btn-light", "button-border")
+    newCity.classList.add("btn", "btn-primary", "button-border")
 
 }
 
